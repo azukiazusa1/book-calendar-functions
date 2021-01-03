@@ -1,15 +1,12 @@
 import httpClient from '../../../services/httpClient'
+import { validator } from './validator'
 import { ListRequest } from './types'
 import { https }　from 'firebase-functions'
 
 export const list = async (req: ListRequest, context: https.CallableContext) => {
-  if (!req.q) {
-    throw new https.HttpsError('invalid-argument', 'The function must be called with one arguments "q"')
-  }
+  const params = validator(req)
   const result = await httpClient.get('/volumes', {
-    params: {
-      q: req.q,
-    },
+    params,
   })
   return {
     data: result.data,
