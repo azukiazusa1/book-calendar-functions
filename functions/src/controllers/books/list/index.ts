@@ -1,17 +1,17 @@
 import httpClient from '../../../services/httpClient'
+import { ListRequest } from './types'
 import { https }　from 'firebase-functions'
 
-export const list = async (data: any, context: https.CallableContext) => {
-  try {
-    const result = await httpClient.get('/volumes?q=search+terms')
-    console.log(result)
-    return {
-      data: result.data,
-    }
-  } catch(e) {
-    console.log(e.message)
-    return {
-      data: e,
-    }
+export const list = async (req: ListRequest, context: https.CallableContext) => {
+  if (!req.q) {
+    throw new https.HttpsError('invalid-argument', 'The function must be called with one arguments "q"')
+  }
+  const result = await httpClient.get('/volumes', {
+    params: {
+      q: req.q,
+    },
+  })
+  return {
+    data: result.data,
   }
 }

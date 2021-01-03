@@ -1,7 +1,7 @@
 export type OrderBy = 'relevance' | 'newest'
 export type PrintType = 'all' | 'books' | 'magazines'
 
-export interface request {
+export interface ListRequest {
   q?: string
   orderBy?: OrderBy
   printType?: PrintType
