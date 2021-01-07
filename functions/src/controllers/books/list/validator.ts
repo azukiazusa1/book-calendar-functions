@@ -8,5 +8,6 @@ export const validator = (req: ListRequest) => {
 
   return {
     q: req.q,
+    orderBy: req.orderBy,
   } as ListRequest
 }
