@@ -6,8 +6,14 @@ export const validator = (req: ListRequest) => {
     throw new https.HttpsError('invalid-argument', 'The function must be called with one arguments "q"')
   }
 
+  const q = convertQuery(req.q)
+
   return {
-    q: req.q,
+    q,
     orderBy: req.orderBy,
   } as ListRequest
+}
+
+export const convertQuery = (q: string) => {
+  return q.replace(/\s+/g, '+')
 }
