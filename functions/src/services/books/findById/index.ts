@@ -3,7 +3,7 @@ import { https } from 'firebase-functions'
 import { convert } from '../convert'
 import { Request } from './types'
 
-export const find = async (req: Request, context: https.CallableContext) => {
+export const findById = async (req: Request, context: https.CallableContext) => {
   if (!req.id) {
     new https.HttpsError('invalid-argument', 'rid is required')
   }
