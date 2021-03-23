@@ -1,4 +1,5 @@
 import { https } from 'firebase-functions'
-import bookController from './controllers/books'
+import bookService from './services/books'
 
-export const books = https.onCall(bookController.list)
+export const find = https.onCall(bookService.find)
+export const findById = https.onCall(bookService.findById)

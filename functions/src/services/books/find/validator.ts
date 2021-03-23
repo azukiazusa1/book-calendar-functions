@@ -11,6 +11,7 @@ export const validator = (req: ListRequest) => {
   return {
     q,
     orderBy: req.orderBy,
+    startIndex: req.startIndex,
   } as ListRequest
 }
 
