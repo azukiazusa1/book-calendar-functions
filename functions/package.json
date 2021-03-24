@@ -2,7 +2,9 @@
   "name": "functions",
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "lint": "eslint \"src/**/*\"",
+    "lint:fix": "eslint --fix \"src/**/*\"",
     "build": "tsc",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
