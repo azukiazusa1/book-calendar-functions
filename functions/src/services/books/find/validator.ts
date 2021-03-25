@@ -1,7 +1,7 @@
-import { ListRequest } from "./types";
+import { Request } from "./types";
 import { https } from 'firebase-functions'
 
-export const validator = (req: ListRequest) => {
+export const validator = (req: Request) => {
   if (!req.q) {
     throw new https.HttpsError('invalid-argument', 'The function must be called with one arguments "q"')
   }
@@ -12,7 +12,7 @@ export const validator = (req: ListRequest) => {
     q,
     orderBy: req.orderBy,
     startIndex: req.startIndex,
-  } as ListRequest
+  } as Request
 }
 
 export const convertQuery = (q: string) => {

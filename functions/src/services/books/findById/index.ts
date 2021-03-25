@@ -3,9 +3,9 @@ import { https } from 'firebase-functions'
 import { convert } from '../convert'
 import { Request } from './types'
 
-export const findById = async (req: Request, context: https.CallableContext) => {
+export const findById = async (req: Request) => {
   if (!req.id) {
-    new https.HttpsError('invalid-argument', 'id is required')
+    throw new https.HttpsError('invalid-argument', 'id is required')
   }
 
   const id = encodeURIComponent(req.id)
@@ -16,6 +16,6 @@ export const findById = async (req: Request, context: https.CallableContext) => 
       data: convert(result.data),
     }
   } catch (e) {
-    new https.HttpsError('not-found', 'not found')
+    throw new https.HttpsError('not-found', 'not found')
   }
 }
